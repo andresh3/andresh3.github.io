@@ -1,0 +1,146 @@
+<!DOCTYPE html5> <html>
+
+<head>
+<meta name="viewport" content="user-scalable=0"
+/>
+<style>
+body {
+	font-size: 5em;
+	margin: 0;
+	padding: 0;
+}
+button {
+	font-size: 1em;
+}
+.row {
+	display: flex;
+	flex-direction: row;
+	width: 100vw;
+}
+.mid {
+	flex-grow: 1;
+	display: inline-block;
+	text-align: center;
+}
+.red { color: red; }
+.green { color:green;}
+</style>
+</head>
+<body>
+
+<div id="form">
+
+
+
+</div>
+
+<script>
+form = document.getElementById("form");
+function assert(value, reason)
+{
+	if(!value) console.error(reason);
+	return value;
+}
+
+
+var items;
+
+function resetStore()
+{
+	items = {
+	"charm":1,
+	"herb":1,
+	"blood":1,
+	"potion":1,
+	"gold": 1,
+	"vp": 0
+	}	
+	updateStore();
+}
+function updateStore()
+{
+	localStorage.setItem("store", JSON.stringify(items) );
+	
+}
+
+function calc_vp()
+{
+
+	var final_vp = 0;
+
+	weights = {
+	charm: 3,
+	herb: 3,
+	blood: -1,
+	potion: 3,
+	gold: 1,
+	vp: 1
+	}
+	for( [key,value] of Object.entries(items) )
+	{
+		final_vp += Math.floor(value/weights[key]);
+	}
+	return final_vp;
+}
+
+function make_form()
+{
+	for( [key,val] of Object.entries(items))
+	{
+		form.innerHTML +=
+		`
+		<div class="row">
+		<button class="red" onclick="add('${key}', -5)">-5</button>
+		<button class="red" onclick="add('${key}', -1)">-1</button>
+		<div class="mid">${key}: <span id="${key}">${val}</span></div>
+		<button class="green" onclick="add('${key}', 1)">+1</button>
+		<button class="green" onclick="add('${key}', 5)">+5</button>
+		</div><br />
+		`;
+	}
+	form.innerHTML += `<button class="red" onclick="reset()">reset</button>
+	<br />Final VP: <span id="final_vp">${calc_vp()}</span>`
+}
+
+function add(item,amount)
+{
+	var span_element = document.getElementById(item);
+	
+	if ( !(
+	assert(span_element, "span element not defined") &&
+	assert(typeof(amount) == "number", "amount is not a number") &&
+	assert(items[item] != null, "item is not valid"))) return;
+	
+	items[item] += amount;
+	span_element.innerHTML = items[item];
+	document.getElementById("final_vp").innerHTML = calc_vp();
+	updateStore();
+	
+}
+function reset()
+{
+	if(!confirm("Confirm, reset all values?"))
+		return;
+	resetStore();
+	for( [key,value] of Object.entries(items))
+		document.getElementById(key).innerHTML = value;
+	
+}
+
+var store = localStorage.getItem("store");
+if(store)
+{
+	try {
+		items = JSON.parse(localStorage.getItem("store"));
+	} catch(e)
+	{
+		console.error("ERROR parsing store. Items reset.");
+		resetStore();
+	}
+}
+
+make_form();
+
+</script>
+</body>
+</html>
