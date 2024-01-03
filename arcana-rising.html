@@ -24,10 +24,18 @@ button {
 }
 .red { color: red; }
 .green { color:green;}
+.gray { color:gray; }
+.small {font-size: 0.6em;}
+h2 {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
 </style>
 </head>
 <body>
-
+<h2> Arcana Rising Calculator </h2>
+<span class="gray small">Use this to keep track of your points, and automatically calculate final victory points</span>
 <div id="form">
 
 
@@ -99,7 +107,7 @@ function make_form()
 		`;
 	}
 	form.innerHTML += `<button class="red" onclick="reset()">reset</button>
-	<br />Final VP: <span id="final_vp">${calc_vp()}</span>`
+	<!--<br />-->Final VP: <span id="final_vp">${calc_vp()}</span>`
 }
 
 function add(item,amount)
