@@ -141,7 +141,7 @@ function reset()
 	resetStore();
 	for( [key,value] of Object.entries(items))
 		document.getElementById(key).innerHTML = value;
-	
+	document.getElementById("final_vp").innerHTML = calc_vp();
 }
 
 var store = localStorage.getItem("store");
