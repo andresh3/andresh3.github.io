@@ -93,6 +93,7 @@ function calc_vp()
 
 function make_form()
 {
+	if(!items) resetStore();
 	for( [key,val] of Object.entries(items))
 	{
 		form.innerHTML +=
@@ -137,7 +138,7 @@ function reset()
 
 var store = localStorage.getItem("store");
 try {
-	items = JSON.parse(localStorage.getItem("store"));
+	items = JSON.parse(store);
 } catch(e)
 {
 	console.error("ERROR parsing store. Items reset.");
