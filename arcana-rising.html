@@ -136,16 +136,14 @@ function reset()
 }
 
 var store = localStorage.getItem("store");
-if(store)
+try {
+	items = JSON.parse(localStorage.getItem("store"));
+} catch(e)
 {
-	try {
-		items = JSON.parse(localStorage.getItem("store"));
-	} catch(e)
-	{
-		console.error("ERROR parsing store. Items reset.");
-		resetStore();
-	}
+	console.error("ERROR parsing store. Items reset.");
+	resetStore();
 }
+
 
 make_form();
 
