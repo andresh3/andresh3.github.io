@@ -1,189 +1,20 @@
-<!DOCTYPE html5> <html>
-
-<head>
-<meta name="viewport" content="user-scalable=0"
-/>
-<style>
-body {
-	background-color: #222;
-	color: #eee;
-	font-size: 5em;
-	margin: 0;
-	padding: 0;
-	font-family:sans-serif;
-}
-button {
-	font-size: 1em;
-	color: #222;
-	padding: 10px;
-	margin: 0;
-}
-.row {
-	display: -webkit-flex;
-	display: flex;
-	flex-direction: row;
-	width: 100vw;
-}
-
-@media (orientation: landscape)
-{
-	body {
-		font-size: 2em;
-	}
-	#form {
-		width; 95vw;
-	}
-	#innerForm
-	{
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-wrap: wrap;
-		width: 95vw;
-		margin-left: 2.5vw;
-	}
-	.row {
-		flex-grow: 1;
-		flex-direction: column;
-		width: initial;
-	}
-}
-.mid {
-	flex-grow: 1;
-	display: inline-block;
-	text-align: center;
-}
-.red { background-color: #FF6961; }
-.green { background-color:77DD77;}
-.gray { color:#aaa; display:block;margin: 25px;text-align:center;}
-.small {font-size: 0.6em;}
-h2 {
-	color: #eee;
-	text-align: center;
-	margin: 0;
-	padding: 0;
-}
-.fullwidth {
-	width: 100%;
-}
-</style>
-</head>
-<body>
-<h2> Arcana Rising Calculator </h2>
-<span class="gray small">Use this to keep track of your points.</span>
-<div id="form"></div>
-<h4 style="text-align: center;color: #eee;">Share</h4>
-<img class="fullwidth" src="./qr-code.svg" />
-
-<script>
-form = document.getElementById("form");
-function assert(value, reason)
-{
-	if(!value) console.error(reason);
-	return value;
-}
-
-
-var items;
-
-function resetStore()
-{
-	items = {
-	"charm":1,
-	"herb":1,
-	"blood":1,
-	"potion":1,
-	"gold": 1,
-	"vp": 0
-	}	
-	updateStore();
-}
-function updateStore()
-{
-	localStorage.setItem("store", JSON.stringify(items) );
-	
-}
-
-function calc_vp()
-{
-
-	var final_vp = 0;
-
-	weights = {
-	charm: 3,
-	herb: 3,
-	blood: -1,
-	potion: 3,
-	gold: 1,
-	vp: 1
-	}
-	for( [key,value] of Object.entries(items) )
-	{
-		final_vp += Math.floor(value/weights[key]);
-	}
-	return final_vp;
-}
-
-function make_form()
-{
-	if(!items) resetStore();
-	var innerhtml = "";
-	innerhtml += `<div id="innerForm">`;
-	for( [key,val] of Object.entries(items))
-	{
-		innerhtml += `
-		
-		<div class="row">
-		<button class="red" onclick="add('${key}', -5)">-5</button>
-		<button class="red" onclick="add('${key}', -1)">-1</button>
-		<div class="mid">${key}: <span id="${key}">${val}</span></div>
-		<button class="green" onclick="add('${key}', 1)">+1</button>
-		<button class="green" onclick="add('${key}', 5)">+5</button>
-		</div>
-		`;
-	}
-	innerhtml += `<button class="red" onclick="reset()">reset</button></div>
-	<!--<br />-->Final VP: <span id="final_vp">${calc_vp()}</span>`
-	form.innerHTML += innerhtml;
-}
-
-function add(item,amount)
-{
-	var span_element = document.getElementById(item);
-	
-	if ( !(
-	assert(span_element, "span element not defined") &&
-	assert(typeof(amount) == "number", "amount is not a number") &&
-	assert(items[item] != null, "item is not valid"))) return;
-	
-	items[item] += amount;
-	span_element.innerHTML = items[item];
-	document.getElementById("final_vp").innerHTML = calc_vp();
-	updateStore();
-	
-}
-function reset()
-{
-	if(!confirm("Confirm, reset all values?"))
-		return;
-	resetStore();
-	for( [key,value] of Object.entries(items))
-		document.getElementById(key).innerHTML = value;
-	document.getElementById("final_vp").innerHTML = calc_vp();
-}
-
-var store = localStorage.getItem("store");
-try {
-	items = JSON.parse(store);
-} catch(e)
-{
-	console.error("ERROR parsing store. Items reset.");
-	resetStore();
-}
-
-
-make_form();
-
-</script>
-</body>
+<!DOCTYPE html5> 
+<html>
+	<head>
+		<meta name="viewport" content="user-scalable=0"
+		/>
+		<link rel="stylesheet" href="styles/arcana-rising.css">
+		<script type="text/javascript" src="scripts/arcana-rising.js"></script>
+	</head>
+	<body>
+		<section id="main">
+			<h2> Arcana Rising Calculator </h2>
+			<span class="gray small">Use this to keep track of your points.</span>
+			<div id="form"></div>
+		</section>
+		<section class="extra">
+			<h4 style="text-align: center;color: #eee;">Share</h4>
+			<img class="fullwidth" src="./qr-code.svg" />
+		</section>
+	</body>
 </html>
