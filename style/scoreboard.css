@@ -1,0 +1,57 @@
+/* Scoreboard Styling */
+
+#scoreboard {
+	width: 100%;
+}
+.positive {
+	color: green;
+}
+.negative {
+	color: red;
+}
+
+/* Default to landscape display */
+.column {
+	display: flex;
+	flex-direction: row;
+}
+.row {
+	display: flex;
+	flex-direction: column-reverse;
+	flex-basis: 100%;
+}
+.row > div {
+	text-align: center;
+}
+.row span:first-child {
+	font-size: 0.6em;
+}
+/* Assuming the rest of the page has a
+	proper relative font size */
+button {
+	font-size: 1em;
+}
+@media (max-device-width: 640px)
+{
+	
+
+	.column:first-child {
+		height: 65vh;
+	}
+	.column {
+		flex-direction: column;
+	}
+	.row {
+		flex-direction: row;
+	}
+	.row > div {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		flex-basis: 100%;
+	}
+	.row > * {
+		flex-basis: 50%;
+	}
+
+}

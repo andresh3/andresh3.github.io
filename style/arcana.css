@@ -1,0 +1,55 @@
+@import "Roboto.css";
+/* General Color Theme */
+
+
+/* General Theme */
+body {
+	font-size: 32px;
+	font-family: Roboto, sans-serif;
+	color: #eee;
+	background-color: #222;
+}
+button {
+	color: #eee;
+	background-color: #555;
+	border: none;
+	margin: 1px;
+}
+button:hover {
+	background-color: #494949;
+}
+button:focus {
+	background-color: #494949;
+}
+button:active {
+	background-color: #222;
+}
+
+h1,h2,h3,h4,h5 {
+	text-align: center;
+}
+.extra {
+	text-align: center;
+}
+.qr-code {
+	width: 25%;
+	display: inline-block;
+}
+
+/* Fix the coloring for scoreboard for our night theme */
+button.positive {
+	color: #77DD77;
+}
+button.negative {
+	color: #ff6666;
+}
+
+/* Mobile */
+@media (max-device-width: 640px) {
+	body {
+		font-size: 56px;
+	}
+	.qr-code {
+		width: 100%;
+	}
+}
