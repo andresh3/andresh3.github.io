@@ -9,6 +9,9 @@ body {
 	color: #eee;
 	background-color: #222;
 }
+.center-align {
+	text-align: center;
+}
 button {
 	color: #eee;
 	background-color: #555;
