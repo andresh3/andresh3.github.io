@@ -1,0 +1,45 @@
+@import "Roboto.css";
+
+body {
+	font-size: 24px;
+}
+/* Small Tablets + sideways phones */
+@media (max-device-width: 936px)
+{
+	body {
+		font-size: 32px; /* base font-size */
+	}
+}
+/* Phones */
+@media (max-device-width: 768px)
+{
+	body {
+		font-size: 32px; /* base font-size */
+	}
+}
+
+/* Content Display */
+label>h1, label>h2, label>h3,label>h4 label>h5, label>h6 {
+	margin: 0;
+}
+section#content {
+	display: flex;
+	justify-content: center;
+}
+
+/* Theme+Color Related */
+body {
+	font-family: Roboto;
+	background-color: #222;
+	color: #eee;
+}
+a {
+	color: #C04E01;
+	text-decoration: none
+}
+a:active {
+	color: #C04E01;
+}
+a:visited {
+	color: #C04E01;
+}

@@ -1,0 +1,42 @@
+h1,h2,h3,h4,h5,h6 {
+	text-align: center;
+}
+p {
+	text-align: center;
+}
+
+ul#links {
+	max-width: 60%;
+	display: inline-block;
+	background-color: #333;
+	list-style-type: none;
+	padding: 0.5em;
+}
+
+label > h1,
+label > h2,
+label > h3,
+label > h4,
+label > h5,
+label > h6 {
+	padding: 0 0 0.5em 0;
+}
+
+li a {
+	display: block;
+	text-align: center;
+}
+
+.description {
+	display: block;
+	text-align: center;
+	font-size:0.8em;
+}
+@media (max-device-width: 968px)
+{
+	ul#links {
+		display: block;
+		max-width: calc(90% - 1em);
+	}
+
+}
