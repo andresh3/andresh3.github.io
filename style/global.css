@@ -1,4 +1,7 @@
 @import "Roboto.css";
+:root {
+	--main-bg-color: #222;
+}
 
 body {
 	font-size: 24px;
@@ -30,7 +33,7 @@ section#content {
 /* Theme+Color Related */
 body {
 	font-family: Roboto;
-	background-color: #222;
+	background-color: var(--main-bg-color);
 	color: #eee;
 }
 a {

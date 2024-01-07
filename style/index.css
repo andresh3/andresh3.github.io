@@ -1,16 +1,35 @@
+@import "global.css";
+
 h1,h2,h3,h4,h5,h6 {
 	text-align: center;
+
 }
 p {
 	text-align: center;
 }
 
-ul#links {
+#links {
 	max-width: 60%;
 	display: inline-block;
+}
+#links ul {
 	background-color: #333;
+	width: calc(100% - .7em);
 	list-style-type: none;
-	padding: 0.5em;
+	padding: 0.5em 0.35em;
+	margin: 0;
+}
+
+#links label h2 {
+	border-top: 2px solid #333;
+}
+
+#links h2 {
+	background-color: var(--main-bg-color);
+}
+
+#links li {
+	margin-bottom: 0.5em;
 }
 
 label > h1,
@@ -19,7 +38,7 @@ label > h3,
 label > h4,
 label > h5,
 label > h6 {
-	padding: 0 0 0.5em 0;
+	padding: 0.25em 0 0.25em 0;
 }
 
 li a {
@@ -34,9 +53,12 @@ li a {
 }
 @media (max-device-width: 968px)
 {
-	ul#links {
-		display: block;
+	#links {
 		max-width: calc(90% - 1em);
+	}
+	#links ul {
+		display: block;
+		
 	}
 
 }
