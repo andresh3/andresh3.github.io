@@ -62,4 +62,10 @@ button.negative {
 		margin: .25em 0 0.5em 0;
 		font-size: 0.75em;
 	}
+	#scoreboard {
+		/* On mobile this creates top/bottom symmetry with the 
+		"Reset" button which is 100% wide */
+		border-top: 1.2em solid #555;
+		padding-top: 1px;
+	}
 }
