@@ -55,4 +55,11 @@ button.negative {
 	.qr-code {
 		width: 100%;
 	}
+	h1, h2, h3, h4, h5, h6 {
+		margin: 0;
+	}
+	#main > p {
+		margin: .25em 0 0.5em 0;
+		font-size: 0.75em;
+	}
 }
