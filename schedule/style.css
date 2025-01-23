@@ -1,0 +1,56 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  
+}
+
+.container
+{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.section:first-child
+{
+  border-top: 1px solid #222;
+}
+
+.section {
+  display: flex;
+  border-bottom: 1px solid #222;
+  padding: 5px;
+}
+
+.leftspan {
+  width: 130px;
+  /* text-align: left; */
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  padding-right: 15px;
+}
+.label {
+  margin: 15px;
+}
+.endTime {
+  color: #222;
+}
+.section h1, h2, h3 {
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+}
+
+.label, .container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
+}
+@media screen and (max-width: 600px) {
+  .label, .container {
+    margin-left: 25px;
+    width: calc(100% - 50px);
+  }
+}
